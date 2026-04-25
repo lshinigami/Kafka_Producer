@@ -1,0 +1,35 @@
+server:
+  port: ${SERVER_PORT}
+
+spring:
+  application:
+    name: kafka-producer-demo
+  devtools:
+    add-properties: false
+    restart:
+      enabled: false
+
+  # Database Configuration
+  datasource:
+    url: ${DB_URL}
+    driver-class-name: org.postgresql.Driver
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: false
+
+  # Config Kafka-server
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+
+    # Config Kafka producer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
